@@ -1,0 +1,77 @@
+import { reducer , getScore, getCurrentQuestion } from './RejectionReducer.js'
+
+import { createQuestion, addAskee, addQuestion, checkRejected,  } from './actions';
+
+describe('rejection reducer', () => {
+	
+	const questions = [
+		createQuestion({
+		  question: 'May I have a raise?',
+		  askee: 'Boss',
+		  status: 'rejected'
+		}),
+		createQuestion({
+		  question: 'May I have an extra scoop of ice-cream?',
+		  askee: 'Baskin Robbins',
+		  status: 'rejected'
+		}),
+		createQuestion({
+		  question: 'May I have some apple pie?',
+		  askee: 'Mom',
+		  status: 'accepted'
+		})
+	];
+
+	const acceptedQuestions = { questions:
+         [ { question: 'May I have a raise?',
+             askee: 'Boss',
+             status: 'rejected' },
+           { question: 'May I have an extra scoop of ice-cream?',
+             askee: 'Baskin Robbins',
+             status: 'rejected' },
+           { question: 'May I have some apple pie?',
+             askee: 'Mom',
+             status: 'accepted' } ] }
+
+
+	it('returns an initial state', () => {
+		expect(reducer()).toEqual({questions: []});
+	});
+
+	it('returns the questions', () => {
+		expect(questions.reduce(reducer, reducer())).toEqual(acceptedQuestions);	
+	});
+
+	it('getsTheScore', () => {
+		expect(getScore(questions.reduce(reducer, reducer()))).toEqual(21);
+	});
+
+	it('can add askee inputs', () => {
+		const event = { target: { value: 'Boss'}}
+		const askeeQuestion = addAskee(event);
+		expect(reducer(reducer(), askeeQuestion)).toEqual({questions: [], currentAskee: 'Boss'});
+	});
+
+	it('can add question inputs', () => {
+		const event = { target: { value: 'May I take a break?'}}
+		const query = addQuestion(event);
+		expect(reducer(reducer(), query)).toEqual({questions: [], currentQuestion: 'May I take a break?'});
+	});
+
+	it('can determine if rejected or not', () => {
+		const event = { target: { checked: true}}
+		const rejected = checkRejected(event);
+	    expect(reducer(reducer(), rejected)).toEqual({questions: [], currentlyRejected: true});	
+	});
+
+	it('can determine the current question', () => {
+		const state = {currentQuestion: 'May I have a raise?', currentAskee: 'Boss', currentlyRejected: true};
+		expect(getCurrentQuestion(state)).toEqual(
+			{ question: 'May I have a raise?',
+			 askee: 'Boss',
+			 status: 'rejected'
+			});
+
+	})
+
+});
