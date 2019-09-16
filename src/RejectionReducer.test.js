@@ -6,32 +6,49 @@ describe('rejection reducer', () => {
 	
 	const questions = [
 		createQuestion({
+		  id: 1,
 		  question: 'May I have a raise?',
 		  askee: 'Boss',
-		  status: 'rejected'
+		  status: 'rejected',
+		  timestamp: 1234567890
 		}),
 		createQuestion({
+		  id: 2,
 		  question: 'May I have an extra scoop of ice-cream?',
 		  askee: 'Baskin Robbins',
-		  status: 'rejected'
+		  status: 'rejected',
+		  timestamp: 1234567890
 		}),
 		createQuestion({
+		  id: 3,
 		  question: 'May I have some apple pie?',
 		  askee: 'Mom',
-		  status: 'accepted'
+		  status: 'accepted',
+		  timestamp: 1234567890
 		})
 	];
 
 	const acceptedQuestions = { questions:
-         [ { question: 'May I have a raise?',
+         [ {
+			 id: 1,
+			 question: 'May I have a raise?',
              askee: 'Boss',
-             status: 'rejected' },
-           { question: 'May I have an extra scoop of ice-cream?',
+			 status: 'rejected',
+			 timestamp: 1234567890 },
+           {
+			 id: 2,
+			 question: 'May I have an extra scoop of ice-cream?',
              askee: 'Baskin Robbins',
-             status: 'rejected' },
-           { question: 'May I have some apple pie?',
+			 status: 'rejected',
+			 timestamp: 1234567890},
+           { 
+			 id: 3,
+			 question: 'May I have some apple pie?',
              askee: 'Mom',
-             status: 'accepted' } ] }
+			 status: 'accepted',
+			 timestamp: 1234567890
+		   }] 
+	}
 
 
 	it('returns an initial state', () => {

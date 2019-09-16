@@ -1,8 +1,9 @@
 import getQuestion from './RejectionReducer';
+import cuid from 'cuid';
 
-const createQuestion = ({question = '', askee = 'anon', status ='unanswered'} = {}) => ({
+const createQuestion = ({ id = cuid(), question = '', askee = 'anon', status ='unanswered', timestamp = new Date().getTime()} = {}) => ({
 	type: createQuestion.type,
-  	payload: {question, askee, status} 
+  	payload: {id, question, askee, status, timestamp} 
 });
 createQuestion.type = 'rejectionReducer/createQuestion';
 

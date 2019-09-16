@@ -18,10 +18,8 @@ describe('check index of application out', () => {
     });
 
     it('should have a blank form after selection', () => {
-
         cy.get('#rejectionAskeeTextInput').should('be.empty');
         cy.get('#rejectionQuestionTextInput').should('be.empty');
         cy.get('#rejectionCheckboxInput').should('be.empty');
-
     });
 });
