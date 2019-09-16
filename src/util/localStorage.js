@@ -1,5 +1,4 @@
 export const loadState = () => {
-	console.log('YO');
 	try {
 		const serializedState = localStorage.getItem('state');
 		if(serializedState === null) {

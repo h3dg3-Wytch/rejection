@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import {loadState, saveState} from './util/localStorage'
+import { loadState, saveState } from './util/localStorage'
 
 import { reducer }from './reducer/RejectionReducer'
 
