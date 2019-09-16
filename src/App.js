@@ -3,11 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 
 import RejectionForm from './RejectionForm';
-import { click, addAskee, checkRejected, createQuestion } from './actions';
+import { addAskee, checkRejected, createQuestion } from './actions';
 function App() {
   return (
     <div className="App">
-     <RejectionForm click={click} addAskee={addAskee} checkRejected={checkRejected} createQuestion={createQuestion} /> 
+     <RejectionForm addAskee={addAskee} checkRejected={checkRejected} createQuestion={createQuestion} /> 
     </div>
   );
 }

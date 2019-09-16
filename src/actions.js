@@ -1,4 +1,3 @@
-import getQuestion from './RejectionReducer';
 import cuid from 'cuid';
 
 const createQuestion = ({ id = cuid(), question = '', askee = 'anon', status ='unanswered', timestamp = new Date().getTime()} = {}) => ({
@@ -25,9 +24,4 @@ const checkRejected = event => ({
 });
 checkRejected.type = 'rejectionReducer/checkRejected';
 
-const click = (e) => {
-    e.preventDefault();
-    return { type: 'temp'};
-};
-
-export { createQuestion, click, addAskee, addQuestion, checkRejected };
+export { createQuestion, addAskee, addQuestion, checkRejected };
