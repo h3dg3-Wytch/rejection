@@ -65,13 +65,12 @@ describe('rejection reducer', () => {
 	});
 
 	it('can determine the current question', () => {
-		const state = {currentQuestion: 'May I have a raise?', currentAskee: 'Boss', currentlyRejected: true};
+		const state = { currentQuestion: 'May I have a raise?', currentAskee: 'Boss', currentlyRejected: true };
 		expect(getCurrentQuestion(state)).toEqual(
 			{ question: 'May I have a raise?',
 			 askee: 'Boss',
 			 status: 'rejected'
 			});
-
-	})
+	});
 
 });

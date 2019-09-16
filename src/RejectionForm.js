@@ -18,17 +18,17 @@ export class RejectionForm extends React.Component {
 		<div>
 			<label>
 			    Askee:
-			    <input type="text" onChange={(e) => this.props.addAskee(e)} /> 
+			    <input type="text" id="rejectionAskeeTextInput"onChange={(e) => this.props.addAskee(e)} /> 
 			</label> 
 		</div>
 		<div>
 			<label>
 			    Question:
-			    <input type="text" onChange={(e) => this.props.addQuestion(e)}/>
+			    <input type="text" id="rejectionQuestionTextInput" onChange={(e) => this.props.addQuestion(e)}/>
 			</label>
 			<label>
 			    Rejected:
-			    <input type="checkbox" onChange={(e) => this.props.checkRejected(e)}/>
+			    <input type="checkbox" id="rejectionCheckboxInput" onChange={(e) => this.props.checkRejected(e)}/>
 			</label>
 		</div>
 		<div>

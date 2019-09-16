@@ -1,5 +1,4 @@
 import { createQuestion, addAskee, addQuestion, checkRejected } from './actions';
-import { stat } from 'fs';
 
 const initialState = { questions: [] };
 const reducer = (state = initialState, { payload, type } = {}) => {
