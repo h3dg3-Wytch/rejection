@@ -1,4 +1,4 @@
-import { createQuestion, addAskee, addQuestion, checkRejected } from './actions';
+import { createQuestion, addAskee, addQuestion, checkRejected } from '../actions';
 
 const initialState = { questions: [] };
 const reducer = (state = initialState, { payload, type } = {}) => {

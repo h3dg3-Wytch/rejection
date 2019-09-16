@@ -4,7 +4,7 @@ import { shallow, mount, render, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 
-import { RejectionForm } from './RejectionForm';
+import { RejectionForm } from '../components/RejectionForm';
 
 // todo
 // create form component, test that this component 

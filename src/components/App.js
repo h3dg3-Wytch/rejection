@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 
 import RejectionForm from './RejectionForm';
-import { addAskee, checkRejected, createQuestion } from './actions';
+import { addAskee, checkRejected, createQuestion } from '../actions';
 function App() {
   return (
     <div className="App">

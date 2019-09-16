@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getScore, getCurrentQuestion } from './RejectionReducer';
-import { addAskee, addQuestion, checkRejected, createQuestion } from './actions'; 
+import { getScore, getCurrentQuestion } from '../reducer/RejectionReducer';
+import { addAskee, addQuestion, checkRejected, createQuestion } from '../actions'; 
 
 export class RejectionForm extends React.Component {
     // to do write test that checks for the score

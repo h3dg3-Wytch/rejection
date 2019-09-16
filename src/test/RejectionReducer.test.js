@@ -1,6 +1,6 @@
-import { reducer , getScore, getCurrentQuestion } from './RejectionReducer.js'
+import { reducer , getScore, getCurrentQuestion } from '../reducer/RejectionReducer.js'
 
-import { createQuestion, addAskee, addQuestion, checkRejected,  } from './actions';
+import { createQuestion, addAskee, addQuestion, checkRejected,  } from '../actions.js';
 
 describe('rejection reducer', () => {
 	
