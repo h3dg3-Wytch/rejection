@@ -9,12 +9,7 @@ export class RejectionForm extends React.Component {
     render() {
         return <div>
             <h1 className="score">Score: {this.props.score}</h1>
-            <form id='rejectionForm' onSubmit={(e) =>
-                {
-                    e.preventDefault();
-                    this.props.createQuestion(this.props.question)
-                    clearForm();
-                }}>
+            <form id='rejectionForm' onSubmit={() => this.props.createQuestion(this.props.question)}>
 		<div>
 			<label>
 			    Askee:
@@ -42,6 +37,7 @@ export class RejectionForm extends React.Component {
 const clearForm = () => document.getElementById('rejectionForm').reset();
 
 function mapStateToProps(state) {
+    console.log('inside the state', state);
 	return {
         score: getScore(state),
         question: getCurrentQuestion(state)
