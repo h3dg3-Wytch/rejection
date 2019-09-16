@@ -13,7 +13,7 @@ export class RejectionForm extends React.Component {
 		<div>
 			<label>
 			    Askee:
-			    <input type="text" id="rejectionAskeeTextInput"onChange={(e) => this.props.addAskee(e)} /> 
+			    <input type="text" id="rejectionAskeeTextInput" onChange={(e) => this.props.addAskee(e)} /> 
 			</label> 
 		</div>
 		<div>
@@ -34,10 +34,7 @@ export class RejectionForm extends React.Component {
     }
 }
 
-const clearForm = () => document.getElementById('rejectionForm').reset();
-
 function mapStateToProps(state) {
-    console.log('inside the state', state);
 	return {
         score: getScore(state),
         question: getCurrentQuestion(state)
