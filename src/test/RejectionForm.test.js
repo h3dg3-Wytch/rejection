@@ -6,15 +6,6 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import { RejectionForm } from '../components/RejectionForm';
 
-// todo
-// create form component, test that this component 
-// has everything X
-// add react-redux X
-// create reducer 
-// test reducer
-// link up form to state
-// functional tests
-// styling?? 
 configure({adapter: new Adapter()});
 
 describe('Rejection Form component', () => {
