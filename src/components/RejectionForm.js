@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 
-import { getScore } from '../reducer/RejectionReducer';
-import { addAskee, addQuestion, checkRejected, createQuestion } from '../actions'; 
-
-export function RejectionForm (props) {
+function RejectionForm ({ score, createQuestion }) {
 
 			const [currentAskee, setCurrentAskee] = useState('');
 			const [currentQuestion, setCurrentQuestion] = useState('');
@@ -12,8 +8,8 @@ export function RejectionForm (props) {
 
 	        return (
 				<div>
-					<h1 className="score">Score: {props.score}</h1>
-					<form id='rejectionForm' onSubmit={() => props.createQuestion({ askee: currentAskee, question: currentQuestion, status: (currentlyRejected) ? 'rejected': 'accepted'})}>
+					<h1 className="score">Score: {score}</h1>
+					<form id='rejectionForm' onSubmit={() => createQuestion({ askee: currentAskee, question: currentQuestion, status: (currentlyRejected) ? 'rejected': 'accepted'})}>
 						<div>
 							<label>
 								Askee:
@@ -38,17 +34,4 @@ export function RejectionForm (props) {
 			);
 }
 
-function mapStateToProps(state) {
-	return {
-        score: getScore(state),
-	}
-}
-
-const mapDispatchToProps = {
-   addAskee,
-   addQuestion, 
-   checkRejected,
-   createQuestion
-};
-    
-export default connect(mapStateToProps, mapDispatchToProps)(RejectionForm);
+export default RejectionForm;

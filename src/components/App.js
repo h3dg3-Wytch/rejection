@@ -3,13 +3,29 @@ import logo from '../logo.svg';
 import '../App.css';
 
 import RejectionForm from './RejectionForm';
-import { addAskee, checkRejected, createQuestion } from '../actions';
-function App() {
+
+import { getScore } from '../reducer/RejectionReducer';
+import { createQuestion } from '../actions';
+
+import { connect } from 'react-redux';
+
+function App({ score, createQuestion }) {
   return (
     <div className="App">
-     <RejectionForm addAskee={addAskee} checkRejected={checkRejected} createQuestion={createQuestion} /> 
+     <RejectionForm score={score} createQuestion={createQuestion} /> 
     </div>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+	return {
+        score: getScore(state),
+	}
+}
+
+const mapDispatchToProps = {
+   createQuestion
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
