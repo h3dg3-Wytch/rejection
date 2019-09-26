@@ -1,4 +1,5 @@
 import { loadState, saveState } from '../util/localStorage';
+
 describe( 'Local Storage', () => {
     const state = { questions: [] };
 

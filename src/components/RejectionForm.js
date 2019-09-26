@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 
+import setter, { checkBoxSetter } from '../util/eventSetter';
+
 function RejectionForm ({ score, createQuestion }) {
 
 			const [currentAskee, setCurrentAskee] = useState('');
 			const [currentQuestion, setCurrentQuestion] = useState('');
-			const [currentlyRejected, setCurrentRejected] = useState(false);
+			const [currentlyRejected, setCurrentRejected] = useState('accepted');
 
 	        return (
 				<div>
 					<h1 className="score">Score: {score}</h1>
-					<form id='rejectionForm' onSubmit={() => createQuestion({ askee: currentAskee, question: currentQuestion, status: (currentlyRejected) ? 'rejected': 'accepted'})}>
+					<form id='rejectionForm' onSubmit={() => createQuestion({ askee: currentAskee, question: currentQuestion, status: currentlyRejected})}>
 						<div>
 							<label>
 								Askee:
-								<input type="text" id="rejectionAskeeTextInput" onChange={(e) => setCurrentAskee(e.target.value)} /> 
+								<input type="text" id="rejectionAskeeTextInput" onChange={setter(setCurrentAskee)} /> 
 							</label> 
 						</div>
 						<div>
 							<label>
 								Question:
-								<input type="text" id="rejectionQuestionTextInput" onChange={(e) => setCurrentQuestion(e.target.value)}/>
+								<input type="text" id="rejectionQuestionTextInput" onChange={setter(setCurrentQuestion)}/>
 							</label>
 							<label>
 								Rejected:
-								<input type="checkbox" id="rejectionCheckboxInput" onChange={(e) => setCurrentRejected(e.target.checked)}/>
+								<input type="checkbox" id="rejectionCheckboxInput" onChange={checkBoxSetter(setCurrentRejected)(checkStatus)}/>
 							</label>
 						</div>
 						<div>
@@ -33,5 +35,7 @@ function RejectionForm ({ score, createQuestion }) {
 				</div>
 			);
 }
+
+const checkStatus = (checked) => (checked) ? 'rejected' : 'accepted' ; 
 
 export default RejectionForm;

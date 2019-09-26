@@ -6,21 +6,21 @@ const createQuestion = ({ id = cuid(), question = '', askee = 'anon', status ='u
 });
 createQuestion.type = 'rejectionReducer/createQuestion';
 
-const addAskee = event => ({
+const addAskee = value => ({
     type: addAskee.type,
-    payload: { askee: event.target.value }
+    payload: { askee: value }
 });
 addAskee.type = 'rejectionReducer/addAskee';
 
-const addQuestion = event => ({
+const addQuestion = value => ({
     type: addQuestion.type,
-    payload: { question: event.target.value }
+    payload: { question: value }
 });
 addQuestion.type = 'rejectionReducer/addQuestion';
 
-const checkRejected = event => ({
+const checkRejected = checked => ({
     type: checkRejected.type,
-    payload: { rejected: event.target.checked }
+    payload: { rejected: checked }
 });
 checkRejected.type = 'rejectionReducer/checkRejected';
 

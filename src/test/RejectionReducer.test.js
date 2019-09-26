@@ -65,19 +65,19 @@ describe('rejection reducer', () => {
 
 	it('can add askee inputs', () => {
 		const event = { target: { value: 'Boss'}}
-		const askeeQuestion = addAskee(event);
+		const askeeQuestion = addAskee(event.target.value );
 		expect(reducer(reducer(), askeeQuestion)).toEqual({questions: [], currentAskee: 'Boss'});
 	});
 
 	it('can add question inputs', () => {
 		const event = { target: { value: 'May I take a break?'}}
-		const query = addQuestion(event);
+		const query = addQuestion(event.target.value);
 		expect(reducer(reducer(), query)).toEqual({questions: [], currentQuestion: 'May I take a break?'});
 	});
 
 	it('can determine if rejected or not', () => {
 		const event = { target: { checked: true}}
-		const rejected = checkRejected(event);
+		const rejected = checkRejected(event.target.checked);
 	    expect(reducer(reducer(), rejected)).toEqual({questions: [], currentlyRejected: true});	
 	});
 
