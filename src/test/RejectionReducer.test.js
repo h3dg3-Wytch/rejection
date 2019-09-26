@@ -60,7 +60,7 @@ describe('rejection reducer', () => {
 	});
 
 	it('getsTheScore', () => {
-		expect(getScore(questions.reduce(reducer, reducer()))).toEqual(21);
+		expect(getScore(acceptedQuestions)).toEqual(21);
 	});
 
 	it('can add askee inputs', () => {
