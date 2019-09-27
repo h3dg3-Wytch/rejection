@@ -12,20 +12,22 @@ import { connect } from 'react-redux';
 function App({ score, createQuestion }) {
   return (
     <div className="App">
-     <RejectionForm score={score} createQuestion={createQuestion} /> 
+      <RejectionForm score={score} createQuestion={createQuestion} />
     </div>
   );
 }
 
 function mapStateToProps(state) {
-	return {
-        score: getScore(state),
-	}
+  return {
+    score: getScore(state)
+  };
 }
 
 const mapDispatchToProps = {
-   createQuestion
+  createQuestion
 };
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
