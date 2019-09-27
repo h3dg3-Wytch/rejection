@@ -9,6 +9,8 @@ import { createQuestion } from '../actions';
 
 import { connect } from 'react-redux';
 
+import PropTypes from 'prop-types';
+
 function App({ score, createQuestion }) {
   return (
     <div className="App">
@@ -25,6 +27,11 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   createQuestion
+};
+
+App.propTypes = {
+  score: PropTypes.number,
+  createQuestion: PropTypes.func
 };
 
 export default connect(

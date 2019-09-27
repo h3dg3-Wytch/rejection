@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import setter, { checkBoxSetter } from '../util/eventSetter';
 
@@ -57,5 +58,10 @@ function RejectionForm({ score, createQuestion }) {
 }
 
 const checkStatus = checked => (checked ? 'rejected' : 'accepted');
+
+RejectionForm.propTypes = {
+  score: PropTypes.string,
+  createQuestion: PropTypes.func
+};
 
 export default RejectionForm;
