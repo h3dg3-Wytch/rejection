@@ -18,21 +18,24 @@ describe('rejection reducer', () => {
       question: 'May I have a raise?',
       askee: 'Boss',
       status: 'rejected',
-      timestamp: 1234567890
+      timestamp: 1234567890,
+      type: createQuestion.type
     }),
     createQuestion({
       id: 2,
       question: 'May I have an extra scoop of ice-cream?',
       askee: 'Baskin Robbins',
       status: 'rejected',
-      timestamp: 1234567890
+      timestamp: 1234567890,
+      type: createQuestion.type
     }),
     createQuestion({
       id: 3,
       question: 'May I have some apple pie?',
       askee: 'Mom',
       status: 'accepted',
-      timestamp: 1234567890
+      timestamp: 1234567890,
+      type: createQuestion.type
     })
   ];
 

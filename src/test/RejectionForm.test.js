@@ -20,7 +20,7 @@ describe('Rejection Form component', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<RejectionForm score="3" />);
+    component = shallow(<RejectionForm score={3} />);
   });
 
   it('should load this file', () => {

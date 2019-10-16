@@ -3,20 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import { loadState, saveState } from './util/localStorage';
 
 import { reducer } from './reducer/RejectionReducer';
 
+import rootSaga from './sagas/sagas';
+
+import createSagaMiddleware from 'redux-saga';
+
 const persistedState = loadState();
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducer,
   persistedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(sagaMiddleware)
 );
+
+sagaMiddleware.run(rootSaga);
 
 store.subscribe(() => {
   saveState({ questions: store.getState().questions });
