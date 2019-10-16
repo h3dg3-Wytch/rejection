@@ -60,7 +60,7 @@ function RejectionForm({ score, createQuestion }) {
 const checkStatus = checked => (checked ? 'rejected' : 'accepted');
 
 RejectionForm.propTypes = {
-  score: PropTypes.string,
+  score: PropTypes.number,
   createQuestion: PropTypes.func
 };
 
