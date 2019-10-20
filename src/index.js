@@ -6,8 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
-import { loadState, saveState } from './util/localStorage';
-
 import { reducer } from './reducer/RejectionReducer';
 
 import rootSaga from './sagas/sagas';
@@ -16,21 +14,16 @@ import createSagaMiddleware from 'redux-saga';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const persistedState = loadState();
-
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducer,
-  persistedState,
   composeEnhancer(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
 
-store.subscribe(() => {
-  saveState({ questions: store.getState().questions });
-});
+store.dispatch({ type: 'LOAD_INTIAL_STORE' });
 
 ReactDOM.render(
   <Provider store={store}>

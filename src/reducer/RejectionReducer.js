@@ -16,6 +16,8 @@ const reducer = (state = initialState, { payload, type } = {}) => {
       return { ...state, currentQuestion: payload.question };
     case checkRejected.type:
       return { ...state, currentlyRejected: payload.rejected };
+    case 'INIT_LOAD':
+      return payload;
     default:
       return state;
   }
