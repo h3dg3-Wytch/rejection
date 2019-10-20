@@ -40,4 +40,4 @@ const getCurrentQuestion = state => ({
   status: state.currentlyRejected ? 'rejected' : 'accepted'
 });
 
-export { reducer, getScore, getCurrentQuestion };
+export { initialState, reducer, getScore, getCurrentQuestion };
