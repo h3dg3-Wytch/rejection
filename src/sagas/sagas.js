@@ -4,7 +4,7 @@ import { saveState, loadState } from '../util/localStorage';
 
 import { initialState } from '../reducer/RejectionReducer';
 
-const getQuestions = state => state.questions;
+export const getQuestions = state => state.questions;
 
 export function* persistState({ type }) {
   if (!type.includes('LOAD') && !type.includes('INIT')) {
