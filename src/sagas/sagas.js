@@ -2,7 +2,7 @@ import { put, takeEvery, all, select, call } from 'redux-saga/effects';
 
 import { saveState, loadState } from '../util/localStorage';
 
-import { initialState } from '../reducer/RejectionReducer';
+import { reducer, loadInitialStore } from '../reducer/RejectionReducer';
 
 export const getQuestions = state => state.questions;
 
@@ -20,13 +20,13 @@ export function* watchEverything() {
 export function* loadLocalState() {
   let localStorageState = yield call(loadState);
   if (localStorageState === undefined) {
-    localStorageState = initialState;
+    localStorageState = reducer(); // returns initial state
   }
   yield put({ type: 'INIT_LOAD', payload: localStorageState });
 }
 
 export function* watchLoadState() {
-  yield takeEvery('LOAD_INTIAL_STORE', loadLocalState);
+  yield takeEvery(loadInitialStore().type, loadLocalState);
 }
 
 export default function* rootSaga() {
