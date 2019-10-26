@@ -16,6 +16,8 @@ const reducer = (state = initialState, { payload, type } = {}) => {
       return { ...state, currentQuestion: payload.question };
     case checkRejected.type:
       return { ...state, currentlyRejected: payload.rejected };
+    case 'INIT_LOAD':
+      return payload;
     default:
       return state;
   }
@@ -38,4 +40,4 @@ const getCurrentQuestion = state => ({
   status: state.currentlyRejected ? 'rejected' : 'accepted'
 });
 
-export { reducer, getScore, getCurrentQuestion };
+export { initialState, reducer, getScore, getCurrentQuestion };

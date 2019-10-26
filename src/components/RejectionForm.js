@@ -17,8 +17,7 @@ function RejectionForm({ score, createQuestion }) {
           createQuestion({
             askee: currentAskee,
             question: currentQuestion,
-            status: currentlyRejected,
-            type: createQuestion.sagaType
+            status: currentlyRejected
           })
         }
       >
