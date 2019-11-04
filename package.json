@@ -38,6 +38,8 @@
     "jest-resolve": "24.8.0",
     "jest-watch-typeahead": "0.3.1",
     "mini-css-extract-plugin": "0.5.0",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.7",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.5.0",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -70,6 +72,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "server": "nodemon src/server.js",
     "test:once": "node scripts/test.js --watchAll=false",
     "lint": "eslint --fix src/ && echo 'Lint complete.'",
     "watch": "watch 'clear && npm run -s test:once && npm run -s lint' src"
@@ -100,6 +103,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
     "watch": "^1.0.2"
   },
