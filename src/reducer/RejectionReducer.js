@@ -4,6 +4,13 @@ import {
   addQuestion,
   checkRejected
 } from '../actions';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../sagas/sagas';
+
+const composeEnhancers =
+  (process.browser && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const sagaMiddleware = createSagaMiddleware();
 
 const initialState = { questions: [] };
 const reducer = (state = initialState, { payload, type } = {}) => {
@@ -40,4 +47,17 @@ const getCurrentQuestion = state => ({
   status: state.currentlyRejected ? 'rejected' : 'accepted'
 });
 
-export { initialState, reducer, getScore, getCurrentQuestion };
+const initStore = (preloadedState = initialState) => {
+  const store = createStore(
+    reducer,
+    preloadedState,
+    composeEnhancers(applyMiddleware(sagaMiddleware))
+  );
+
+  sagaMiddleware.run(rootSaga);
+  store.dispatch({ type: 'LOAD_INTIAL_STORE' });
+  return store;
+};
+
+export default initStore;
+export { initialState, reducer, getScore, getCurrentQuestion, initStore };

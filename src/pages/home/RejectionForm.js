@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import setter, { checkBoxSetter } from '../util/eventSetter';
+import setter, { checkBoxSetter } from '../../util/eventSetter';
 
-function RejectionForm({ score, createQuestion }) {
+import { connect } from 'react-redux';
+
+import { createQuestion } from '../../actions';
+
+import { getScore } from '../../reducer/RejectionReducer';
+
+// import pageHOC from './PageHOC';
+
+const RejectionForm = ({ score, createQuestion }) => {
   const [currentAskee, setCurrentAskee] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentlyRejected, setCurrentRejected] = useState('accepted');
@@ -55,7 +63,7 @@ function RejectionForm({ score, createQuestion }) {
       </form>
     </div>
   );
-}
+};
 
 const checkStatus = checked => (checked ? 'rejected' : 'accepted');
 
@@ -64,4 +72,18 @@ RejectionForm.propTypes = {
   createQuestion: PropTypes.func
 };
 
-export default RejectionForm;
+function mapStateToProps(state) {
+  return {
+    score: getScore(state)
+  };
+}
+
+const mapDispatchToProps = {
+  createQuestion
+};
+
+// export default pageHOC(RejectionForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RejectionForm);
