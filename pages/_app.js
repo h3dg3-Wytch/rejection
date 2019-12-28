@@ -23,9 +23,6 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
-    console.log('=========');
-    console.log('pageProps', pageProps);
-    console.log('=========');
     return (
       <Fragment>
         <Head>
