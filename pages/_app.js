@@ -27,6 +27,9 @@ class MyApp extends App {
       <Fragment>
         <Head>
           <title>Rejection App By H3dg3Wytch</title>
+          <meta charSet="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="#000" />
         </Head>
         <Provider store={store}>
           <Component {...pageProps} />
