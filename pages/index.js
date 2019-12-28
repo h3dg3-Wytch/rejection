@@ -1,3 +1,3 @@
-import IndexPage from '../src/pages/home/RejectionForm';
+import IndexPage from '../src/pages/home/App';
 
 export default IndexPage;

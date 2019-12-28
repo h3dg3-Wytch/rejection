@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import setter, { checkBoxSetter } from '../../util/eventSetter';
-
-import { connect } from 'react-redux';
-
-import { createQuestion } from '../../actions';
-
-import { getScore } from '../../reducer/RejectionReducer';
-
-// import pageHOC from './PageHOC';
+import setter, { checkBoxSetter } from '../util/eventSetter';
 
 const RejectionForm = ({ score, createQuestion }) => {
   const [currentAskee, setCurrentAskee] = useState('');
@@ -72,18 +64,4 @@ RejectionForm.propTypes = {
   createQuestion: PropTypes.func
 };
 
-function mapStateToProps(state) {
-  return {
-    score: getScore(state)
-  };
-}
-
-const mapDispatchToProps = {
-  createQuestion
-};
-
-// export default pageHOC(RejectionForm);
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RejectionForm);
+export default RejectionForm;
