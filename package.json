@@ -79,9 +79,9 @@
     "build": "next build",
     "test": "jest",
     "server": "nodemon src/server.js",
-    "test:once": "node scripts/test.js --watchAll=false",
+    "test:watch": "npm run -s test -- --watch",
     "lint": "eslint --fix src/ && echo 'Lint complete.'",
-    "watch": "watch 'clear && npm run -s test:once && npm run -s lint' src",
+    "watch": "watch 'clear && npm run -s test && npm run -s lint' src",
     "dev": "next"
   },
   "eslintConfig": {
