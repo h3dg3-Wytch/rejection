@@ -1,10 +1,9 @@
 import React from 'react';
-import '../App.css';
 
-import RejectionForm from './RejectionForm';
+import RejectionForm from '../../components/RejectionForm';
 
-import { getScore } from '../reducer/RejectionReducer';
-import { createQuestion } from '../actions';
+import { getScore } from '../../reducer/RejectionReducer';
+import { createQuestion } from '../../actions';
 
 import { connect } from 'react-redux';
 

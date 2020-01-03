@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import setter, { checkBoxSetter } from '../util/eventSetter';
 
-function RejectionForm({ score, createQuestion }) {
+const RejectionForm = ({ score, createQuestion }) => {
   const [currentAskee, setCurrentAskee] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentlyRejected, setCurrentRejected] = useState('accepted');
@@ -55,7 +55,7 @@ function RejectionForm({ score, createQuestion }) {
       </form>
     </div>
   );
-}
+};
 
 const checkStatus = checked => (checked ? 'rejected' : 'accepted');
 
