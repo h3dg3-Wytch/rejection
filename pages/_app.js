@@ -34,6 +34,7 @@ class MyApp extends App {
             name="description"
             content="Rejection app fork by Eric Elliot"
           />
+          <link rel="apple-touch-icon" href="/logo192.png"/>
         </Head>
         <Provider store={store}>
           <Component {...pageProps} />
