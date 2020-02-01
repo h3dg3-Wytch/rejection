@@ -8,11 +8,13 @@ import { createQuestion } from '../../actions';
 import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
+import SignInForm from '../../components/SignInForm';
 
 function App({ score, createQuestion }) {
   return (
     <div className="App">
       <RejectionForm score={score} createQuestion={createQuestion} />
+      <SignInForm />
     </div>
   );
 }
