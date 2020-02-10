@@ -30,4 +30,10 @@ const checkRejected = checked => ({
 });
 checkRejected.type = 'rejectionReducer/checkRejected';
 
-export { createQuestion, addAskee, addQuestion, checkRejected };
+const loadUser = user => ({
+  type: loadUser.type,
+  payload: { user }
+});
+loadUser.type = 'rejectionReducer/loadUser';
+
+export { createQuestion, addAskee, addQuestion, checkRejected, loadUser };

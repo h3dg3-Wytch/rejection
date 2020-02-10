@@ -2,7 +2,8 @@ import {
   createQuestion,
   addAskee,
   addQuestion,
-  checkRejected
+  checkRejected,
+  loadUser
 } from '../actions';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -25,6 +26,8 @@ const reducer = (state = initialState, { payload, type } = {}) => {
       return { ...state, currentlyRejected: payload.rejected };
     case 'INIT_LOAD':
       return payload;
+    case loadUser.type: 
+      return { ...state, user: payload.user }  
     default:
       return state;
   }

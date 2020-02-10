@@ -10,18 +10,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SignInForm from '../../components/SignInForm';
 
-function App({ score, createQuestion }) {
+function App({ score, createQuestion, user }) {
   return (
     <div className="App">
       <RejectionForm score={score} createQuestion={createQuestion} />
-      <SignInForm />
+      <SignInForm user={user} />
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    score: getScore(state)
+    score: getScore(state),
+    user: state.user
   };
 }
 
