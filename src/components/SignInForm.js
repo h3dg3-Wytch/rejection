@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import setter from '../util/eventSetter';
-import firestore from '../util/firebase';
+import { isLoaded } from 'react-redux-firebase';
 
-const SignInForm = ({ user }) => {
+import setter from '../util/eventSetter';
+
+import { connect } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
+import { firestore } from 'firebase';
+
+const authExists = (auth) => !!auth && !!auth.uid;
+
+const SignInForm = ({ auth, profile }) => {
   const [currentEmail, setCurrentEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
+  const firebase = useFirebase();
+
   return (
     <div>
       <h1>Sign up</h1>
       <form onSubmit={() => {
-          fetch('/sign-up', {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ email: currentEmail, password: currentPassword})
-          }).then(res => res);
+        firebase.createUser({ 
+          email: currentEmail,
+          password: currentPassword
+        });
       }}>
         <label>
             E-mail: 
@@ -40,14 +45,6 @@ const SignInForm = ({ user }) => {
       </form>
       <h1>Sign in</h1>
       <form onSubmit={() => {
-        firestore.auth().signInWithEmailAndPassword(currentEmail, currentPassword).then(res => {
-          console.log('signed on succesfully');
-          debugger;
-          return res;
-        }).catch( err => {
-          console.log('blood of old valyria', err);
-          return err;
-        })
       }}>
         <label>
             E-mail: 
@@ -64,12 +61,26 @@ const SignInForm = ({ user }) => {
                 />
         </label>
         <div>
-          <input type="submit" value="Submit" />
         </div>
       </form>
-      { user && <h1>Logged on</h1>}
+      <button onClick={() =>
+            firebase.login({
+              email: currentEmail,
+              password: currentPassword
+            })
+      }>Login</button>
+      <button onClick={() =>
+            firebase.logout()
+      }>Logout</button>
+
+      {
+        authExists(auth) && <h1> You are logged in </h1>
+      }
     </div>
   );
 };
 
-export default SignInForm;
+export default connect((state) => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile
+}))(SignInForm);

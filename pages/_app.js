@@ -5,6 +5,10 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import initStore from '../src/reducer/RejectionReducer';
+import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
+import firebase from 'firebase/app';
+
+
 
 class MyApp extends App {
   constructor(props) {
@@ -21,6 +25,20 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
+
+    const rrfConfig = {
+      userProfile: 'users',
+      // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+      // enableClaims: true // Get custom claims along with the profile
+    };
+
+    const rrfProps = {
+      firebase,
+      config: rrfConfig,
+      dispatch: store.dispatch,
+      // createFirestoreInstance // <- needed if using firestore
+    }
+
     return (
       <Fragment>
         <Head>
@@ -36,7 +54,9 @@ class MyApp extends App {
           />
         </Head>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <ReactReduxFirebaseProvider {...rrfProps}>
+            <Component {...pageProps} />
+          </ ReactReduxFirebaseProvider>
         </Provider>
       </Fragment>
     );

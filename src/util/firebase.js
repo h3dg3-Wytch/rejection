@@ -20,9 +20,9 @@ const firebaseConfig = {
     measurementId: "G-17C4QT7PPF"
 };
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
+// if (!firebase.apps.length) {
+//     firebase.initializeApp(firebaseConfig);
+// }
 
 firebase.auth().onAuthStateChanged((user) =>{
     console.log('VVVVVVVVVVVV', initStore);
