@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { firestore } from 'firebase';
 
-const authExists = (auth) => !!auth && !!auth.uid;
+const authExists = auth => !!auth && !!auth.uid;
 
 const SignInForm = ({ auth, profile }) => {
   const [currentEmail, setCurrentEmail] = useState('');
@@ -19,68 +19,56 @@ const SignInForm = ({ auth, profile }) => {
   return (
     <div>
       <h1>Sign up</h1>
-      <form onSubmit={() => {
-        firebase.createUser({ 
-          email: currentEmail,
-          password: currentPassword
-        });
-      }}>
+      <form
+        onSubmit={() => {
+          firebase.createUser({
+            email: currentEmail,
+            password: currentPassword
+          });
+        }}
+      >
         <label>
-            E-mail: 
-        <input
-                type="email"
-                onChange={setter(setCurrentEmail)}
-                />
+          E-mail:
+          <input type="email" onChange={setter(setCurrentEmail)} />
         </label>
         <label>
-            Password: 
-        <input
-                type="password"
-                onChange={setter(setCurrentPassword)}
-                />
+          Password:
+          <input type="password" onChange={setter(setCurrentPassword)} />
         </label>
         <div>
           <input type="submit" value="Submit" />
         </div>
       </form>
       <h1>Sign in</h1>
-      <form onSubmit={() => {
-      }}>
+      <form onSubmit={() => {}}>
         <label>
-            E-mail: 
-        <input
-                type="email"
-                onChange={setter(setCurrentEmail)}
-                />
+          E-mail:
+          <input type="email" onChange={setter(setCurrentEmail)} />
         </label>
         <label>
-            Password: 
-        <input
-                type="password"
-                onChange={setter(setCurrentPassword)}
-                />
+          Password:
+          <input type="password" onChange={setter(setCurrentPassword)} />
         </label>
-        <div>
-        </div>
+        <div></div>
       </form>
-      <button onClick={() =>
-            firebase.login({
-              email: currentEmail,
-              password: currentPassword
-            })
-      }>Login</button>
-      <button onClick={() =>
-            firebase.logout()
-      }>Logout</button>
+      <button
+        onClick={() =>
+          firebase.login({
+            email: currentEmail,
+            password: currentPassword
+          })
+        }
+      >
+        Login
+      </button>
+      <button onClick={() => firebase.logout()}>Logout</button>
 
-      {
-        authExists(auth) && <h1> You are logged in </h1>
-      }
+      {authExists(auth) && <h1> You are logged in </h1>}
     </div>
   );
 };
 
-export default connect((state) => ({
+export default connect(state => ({
   auth: state.firebase.auth,
   profile: state.firebase.profile
 }))(SignInForm);

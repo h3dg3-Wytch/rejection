@@ -5,10 +5,11 @@ const createQuestion = ({
   question = '',
   askee = 'anon',
   status = 'unanswered',
-  timestamp = new Date().getTime()
+  timestamp = new Date().getTime(),
+  owner = ''
 } = {}) => ({
   type: createQuestion.type,
-  payload: { id, question, askee, status, timestamp }
+  payload: { id, question, askee, status, timestamp, owner }
 });
 createQuestion.type = 'rejectionReducer/createQuestion';
 

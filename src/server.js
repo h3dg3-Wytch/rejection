@@ -1,24 +1,24 @@
-const express = require('express')
-const next = require('next')
+const express = require('express');
+const next = require('next');
 // const firebase = require("firebase/app");
 
 // require("firebase/auth");
 // require("firebase/firestore");
 
-const port = parseInt(process.env.PORT, 10) || 3000
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDJ-VJv3AW1wvFk6CeM5p-Oelh5HO0m0lg",
-    authDomain: "rejection-be1c8.firebaseapp.com",
-    databaseURL: "https://rejection-be1c8.firebaseio.com",
-    projectId: "rejection-be1c8",
-    storageBucket: "rejection-be1c8.appspot.com",
-    messagingSenderId: "860477993669",
-    appId: "1:860477993669:web:6db9fd57332ed683a736ac",
-    measurementId: "G-17C4QT7PPF"
+  apiKey: 'AIzaSyDJ-VJv3AW1wvFk6CeM5p-Oelh5HO0m0lg',
+  authDomain: 'rejection-be1c8.firebaseapp.com',
+  databaseURL: 'https://rejection-be1c8.firebaseio.com',
+  projectId: 'rejection-be1c8',
+  storageBucket: 'rejection-be1c8.appspot.com',
+  messagingSenderId: '860477993669',
+  appId: '1:860477993669:web:6db9fd57332ed683a736ac',
+  measurementId: 'G-17C4QT7PPF'
 };
 
 // firebase.initializeApp(firebaseConfig);
@@ -33,16 +33,16 @@ app.prepare().then(() => {
   });
 
   server.get('/a', (req, res) => {
-    return app.render(req, res, '/a', req.query)
-  })
+    return app.render(req, res, '/a', req.query);
+  });
 
   server.get('/b', (req, res) => {
-    return app.render(req, res, '/b', req.query)
-  })
+    return app.render(req, res, '/b', req.query);
+  });
 
   server.get('/posts/:id', (req, res) => {
-    return app.render(req, res, '/posts', { id: req.params.id })
-  })
+    return app.render(req, res, '/posts', { id: req.params.id });
+  });
 
   // server.post('/sign-up', (req, res) => {
   //   const email = req.param('email');
@@ -62,11 +62,11 @@ app.prepare().then(() => {
   // });
 
   server.all('*', (req, res) => {
-    return handle(req, res)
-  })
+    return handle(req, res);
+  });
 
   server.listen(port, err => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
-  })
-})
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${port}`);
+  });
+});

@@ -11,7 +11,7 @@ import {
   checkRejected
 } from '../actions.js';
 
-describe('rejection reducer', () => {
+describe.only('rejection reducer', () => {
   const questions = [
     createQuestion({
       id: 1,
@@ -19,7 +19,8 @@ describe('rejection reducer', () => {
       askee: 'Boss',
       status: 'rejected',
       timestamp: 1234567890,
-      type: createQuestion.type
+      type: createQuestion.type,
+      owner: 'user123'
     }),
     createQuestion({
       id: 2,
@@ -46,23 +47,30 @@ describe('rejection reducer', () => {
         question: 'May I have a raise?',
         askee: 'Boss',
         status: 'rejected',
-        timestamp: 1234567890
+        timestamp: 1234567890,
+        owner: 'user123'
       },
       {
         id: 2,
         question: 'May I have an extra scoop of ice-cream?',
         askee: 'Baskin Robbins',
         status: 'rejected',
-        timestamp: 1234567890
+        timestamp: 1234567890,
+        owner: ''
       },
       {
         id: 3,
         question: 'May I have some apple pie?',
         askee: 'Mom',
         status: 'accepted',
-        timestamp: 1234567890
+        timestamp: 1234567890,
+        owner: ''
       }
     ]
+  };
+
+  const auth = {
+    uid: 'user123'
   };
 
   it('returns an initial state', () => {
@@ -73,8 +81,10 @@ describe('rejection reducer', () => {
     expect(questions.reduce(reducer, reducer())).toEqual(acceptedQuestions);
   });
 
-  it('getsTheScore', () => {
-    expect(getScore(acceptedQuestions)).toEqual(21);
+  it.only('returns the score with the associated id', () => {
+    expect(getScore({ questions: acceptedQuestions.questions, auth })).toEqual(
+      10
+    );
   });
 
   it('can add askee inputs', () => {

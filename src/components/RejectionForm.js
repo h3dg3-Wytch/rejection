@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { useFirebase } from 'react-redux-firebase';
+
 import setter, { checkBoxSetter } from '../util/eventSetter';
 
-const RejectionForm = ({ score, createQuestion }) => {
+const RejectionForm = ({ score, createQuestion, auth, profile }) => {
   const [currentAskee, setCurrentAskee] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentlyRejected, setCurrentRejected] = useState('accepted');
+
+  const ownerId = auth.uid;
 
   return (
     <div>
@@ -17,7 +21,8 @@ const RejectionForm = ({ score, createQuestion }) => {
           createQuestion({
             askee: currentAskee,
             question: currentQuestion,
-            status: currentlyRejected
+            status: currentlyRejected,
+            owner: ownerId
           })
         }
       >
