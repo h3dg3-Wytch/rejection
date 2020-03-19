@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { useFirebase } from 'react-redux-firebase';
+import { firebaseConnect, useFirebase } from 'react-redux-firebase';
 
 import setter, { checkBoxSetter } from '../util/eventSetter';
+
+import { compose } from 'redux'
+
+import { connect } from 'react-redux';
 
 const RejectionForm = ({ score, createQuestion, auth, profile }) => {
   const [currentAskee, setCurrentAskee] = useState('');
@@ -69,4 +73,14 @@ RejectionForm.propTypes = {
   createQuestion: PropTypes.func
 };
 
-export default RejectionForm;
+const enhance = compose(
+  firebaseConnect((props) => [
+    { path: 'questions' }
+  ]),
+  connect((state => ({
+    questions: state.firebase.data.questions,
+  })),
+  )
+)
+
+export default enhance(RejectionForm);

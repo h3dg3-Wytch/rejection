@@ -7,6 +7,8 @@ import setter from '../util/eventSetter';
 
 import { connect } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
+import { useSelector } from 'react-redux'
+
 import { firestore } from 'firebase';
 
 const authExists = auth => !!auth && !!auth.uid;
@@ -16,6 +18,9 @@ const SignInForm = ({ auth, profile }) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const firebase = useFirebase();
 
+  const questions = useSelector(state => state.firebase.data['questions']);
+
+  console.log(questions);
   return (
     <div>
       <h1>Sign up</h1>
@@ -64,6 +69,10 @@ const SignInForm = ({ auth, profile }) => {
       <button onClick={() => firebase.logout()}>Logout</button>
 
       {authExists(auth) && <h1> You are logged in </h1>}
+
+      <button onClick={() => firebase.watchEvent('value', 'questions')}>
+        Load Todos
+      </button>
     </div>
   );
 };

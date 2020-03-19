@@ -4,12 +4,16 @@ import { saveState, loadState } from '../util/localStorage';
 
 import { initialState } from '../reducer/RejectionReducer';
 
+import firebase from 'firebase/app';
+import 'firebase/database';
+
 export const getQuestions = state => state.questions.questions;
 
 export function* persistState({ type }) {
   if (!type.includes('LOAD') && !type.includes('INIT')) {
     const questions = yield select(getQuestions);
     yield call(saveState, { questions });
+    yield firebase.ref('questions').set({ questions });
   }
 }
 

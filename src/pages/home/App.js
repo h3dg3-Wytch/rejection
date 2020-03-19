@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { isLoaded } from 'react-redux-firebase';
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 import RejectionForm from '../../components/RejectionForm';
 
@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import SignInForm from '../../components/SignInForm';
+
+import { compose } from 'redux'
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
@@ -52,7 +54,4 @@ App.propTypes = {
   createQuestion: PropTypes.func
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
