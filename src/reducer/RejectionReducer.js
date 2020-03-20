@@ -23,6 +23,7 @@ const firebaseConfig = {
   measurementId: 'G-17C4QT7PPF'
 };
 
+console.log('fire and blood', firebase);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

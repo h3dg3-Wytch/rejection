@@ -8,13 +8,20 @@ import setter, { checkBoxSetter } from '../util/eventSetter';
 import { compose } from 'redux'
 
 import { connect } from 'react-redux';
+import RejectionHistoryItem from './RejectionHistoryItem';
 
-const RejectionForm = ({ score, createQuestion, auth, profile }) => {
+const RejectionForm = ({ score, createQuestion, auth, profile, questions }) => {
+
+
   const [currentAskee, setCurrentAskee] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentlyRejected, setCurrentRejected] = useState('accepted');
 
   const ownerId = auth.uid;
+  // let rejectionItemListItems;
+  // if(questions){
+  //   rejectionItemListItems = questions.questions.map( question => <RejectionHistoryItem question={question}/>)
+  // }
 
   return (
     <div>
@@ -83,4 +90,5 @@ const enhance = compose(
   )
 )
 
+export { RejectionForm };
 export default enhance(RejectionForm);

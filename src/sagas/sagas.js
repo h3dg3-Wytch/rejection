@@ -13,6 +13,7 @@ export function* persistState({ type }) {
   if (!type.includes('LOAD') && !type.includes('INIT')) {
     const questions = yield select(getQuestions);
     yield call(saveState, { questions });
+    console.log('fire!', firebase);
     yield firebase.ref('questions').set({ questions });
   }
 }

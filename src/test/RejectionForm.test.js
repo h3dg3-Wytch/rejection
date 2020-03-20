@@ -3,7 +3,7 @@ import { shallow, mount, render, configure } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
 
-import RejectionForm from '../components/RejectionForm';
+import { RejectionForm } from '../components/RejectionForm';
 
 // todo
 // create form component, test that this component
@@ -17,10 +17,15 @@ import RejectionForm from '../components/RejectionForm';
 configure({ adapter: new Adapter() });
 
 describe('Rejection Form component', () => {
+
+  const auth = {
+    uid: 'user123'
+  };
+
   let component;
 
   beforeEach(() => {
-    component = shallow(<RejectionForm score={3} />);
+    component = shallow(<RejectionForm auth={auth}score={3} />);
   });
 
   it('should load this file', () => {

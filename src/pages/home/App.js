@@ -11,8 +11,7 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import SignInForm from '../../components/SignInForm';
-
-import { compose } from 'redux'
+import RejectionHistoryList from '../../components/RejectionHistoryList';
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
@@ -20,7 +19,7 @@ function AuthIsLoaded({ children }) {
   return children;
 }
 
-function App({ score, createQuestion, auth, profile }) {
+function App({ score, createQuestion, auth, profile, questions }) {
   return (
     <div className="App">
       <AuthIsLoaded>
@@ -31,6 +30,7 @@ function App({ score, createQuestion, auth, profile }) {
           profile={profile}
         />
         <SignInForm />
+        <RejectionHistoryList questions={questions}/>
       </AuthIsLoaded>
     </div>
   );
@@ -41,7 +41,8 @@ function mapStateToProps(state) {
   return {
     score: getScore({ questions: state.questions.questions, auth }),
     auth,
-    profile: state.firebase.profile
+    profile: state.firebase.profile,
+    questions: state.firebase.data.questions,
   };
 }
 

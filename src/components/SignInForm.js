@@ -20,7 +20,6 @@ const SignInForm = ({ auth, profile }) => {
 
   const questions = useSelector(state => state.firebase.data['questions']);
 
-  console.log(questions);
   return (
     <div>
       <h1>Sign up</h1>
@@ -70,9 +69,6 @@ const SignInForm = ({ auth, profile }) => {
 
       {authExists(auth) && <h1> You are logged in </h1>}
 
-      <button onClick={() => firebase.watchEvent('value', 'questions')}>
-        Load Todos
-      </button>
     </div>
   );
 };
