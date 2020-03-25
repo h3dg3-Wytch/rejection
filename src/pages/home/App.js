@@ -4,7 +4,7 @@ import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 import RejectionForm from '../../components/RejectionForm';
 
-import { getScore } from '../../reducer/RejectionReducer';
+import { getScore, getExampleScore } from '../../reducer/RejectionReducer';
 import { createQuestion } from '../../actions';
 
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ function AuthIsLoaded({ children }) {
   return children;
 }
 
-function App({ score, createQuestion, auth, profile, questions }) {
+function App({ score, createQuestion, auth, profile, questions, exampleScore }) {
   return (
     <div className="App">
       <AuthIsLoaded>
@@ -28,21 +28,25 @@ function App({ score, createQuestion, auth, profile, questions }) {
           createQuestion={createQuestion}
           auth={auth}
           profile={profile}
+          exampleScore={exampleScore}
         />
-        <SignInForm />
         <RejectionHistoryList questions={questions}/>
       </AuthIsLoaded>
     </div>
   );
 }
 
+const authExists = auth => !!auth && !!auth.uid;
+
 function mapStateToProps(state) {
   const auth = state.firebase.auth;
+  console.log(auth.uid);
   return {
     score: getScore({ questions: state.questions.questions, auth }),
     auth,
     profile: state.firebase.profile,
     questions: state.firebase.data.questions,
+    exampleScore: getExampleScore({ questions: state.questions.questions}),
   };
 }
 

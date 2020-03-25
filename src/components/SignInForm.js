@@ -11,12 +11,16 @@ import { useSelector } from 'react-redux'
 
 import { firestore } from 'firebase';
 
+import Router , {useRouter}  from 'next/router';
+
+
 const authExists = auth => !!auth && !!auth.uid;
 
 const SignInForm = ({ auth, profile }) => {
   const [currentEmail, setCurrentEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const firebase = useFirebase();
+  const router = useRouter();
 
   const questions = useSelector(state => state.firebase.data['questions']);
 
@@ -29,6 +33,7 @@ const SignInForm = ({ auth, profile }) => {
             email: currentEmail,
             password: currentPassword
           });
+          router.push('/index');
         }}
       >
         <label>
@@ -56,11 +61,13 @@ const SignInForm = ({ auth, profile }) => {
         <div></div>
       </form>
       <button
-        onClick={() =>
-          firebase.login({
-            email: currentEmail,
-            password: currentPassword
-          })
+        onClick={() => {
+            firebase.login({
+              email: currentEmail,
+              password: currentPassword
+            })
+            router.push('/index');
+          }
         }
       >
         Login

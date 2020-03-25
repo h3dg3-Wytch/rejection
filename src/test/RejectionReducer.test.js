@@ -81,11 +81,12 @@ describe.only('rejection reducer', () => {
     expect(questions.reduce(reducer, reducer())).toEqual(acceptedQuestions);
   });
 
-  it.only('returns the score with the associated id', () => {
+  it('returns the score with the associated id', () => {
     expect(getScore({ questions: acceptedQuestions.questions, auth })).toEqual(
       10
     );
   });
+
 
   it('can add askee inputs', () => {
     const event = { target: { value: 'Boss' } };

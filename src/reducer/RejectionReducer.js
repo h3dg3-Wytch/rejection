@@ -23,10 +23,10 @@ const firebaseConfig = {
   measurementId: 'G-17C4QT7PPF'
 };
 
-console.log('fire and blood', firebase);
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
 const composeEnhancers =
   (process.browser && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const sagaMiddleware = createSagaMiddleware();
@@ -69,6 +69,16 @@ const getScore = state =>
       0
     );
 
+const getExampleScore = state => 
+  state.questions.reduce(
+    (acc, question) =>
+      question.status === 'rejected'
+        ? acc + 10
+        : question.status === 'accepted'
+        ? acc + 1
+        : acc,
+    0);
+
 const getCurrentQuestion = state => ({
   question: state.currentQuestion,
   askee: state.currentAskee,
@@ -88,4 +98,4 @@ const initStore = (preloadedState = initialState) => {
 };
 
 export default initStore;
-export { initialState, reducer, getScore, getCurrentQuestion, initStore };
+export { initialState, reducer, getScore, getCurrentQuestion, initStore, getExampleScore };
