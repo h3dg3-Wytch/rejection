@@ -12,6 +12,6 @@ const RejectionHistoryList = ({ questions = [], auth }) => {
     return <div className='rejectionList'>{rejectionListItems}</div>
 };
 
-const getQuestionLensItems = questions => questions.map(question => <RejectionHistoryItem id={question.id} askee={question.askee} question={question.question} status={question.status}/>)
+const getQuestionLensItems = questions => questions.map(question => <RejectionHistoryItem key={question.id} id={question.id} askee={question.askee} question={question.question} status={question.status}/>)
 
 export default RejectionHistoryList;
