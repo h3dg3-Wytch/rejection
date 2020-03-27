@@ -12,6 +12,15 @@ import rootSaga from '../sagas/sagas';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+// build a list from blah blah blah blah 
+
+// we need to make a seprate .env file that the project then reads these values in
+// import some library
+// create the .env file
+// move this section over to the .env file 
+// read from the .env file
+// pust the contents of the .env file into the firebaseConfig 
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDJ-VJv3AW1wvFk6CeM5p-Oelh5HO0m0lg',
   authDomain: 'rejection-be1c8.firebaseapp.com',
