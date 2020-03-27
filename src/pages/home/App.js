@@ -19,7 +19,7 @@ function AuthIsLoaded({ children }) {
   return children;
 }
 
-function App({ score, createQuestion, auth, profile, questions, exampleScore }) {
+function App({ score, createQuestion, auth, profile, questions, exampleScore, exampleQuestions }) {
   return (
     <div className="App">
       <AuthIsLoaded>
@@ -29,6 +29,7 @@ function App({ score, createQuestion, auth, profile, questions, exampleScore }) 
           auth={auth}
           profile={profile}
           exampleScore={exampleScore}
+          exampleQuestions={exampleQuestions}
         />
         <RejectionHistoryList questions={questions}/>
       </AuthIsLoaded>
@@ -41,17 +42,13 @@ const authExists = auth => !!auth && !!auth.uid;
 function mapStateToProps(state) {
   const auth = state.firebase.auth;
   const questions = state.questions.questions || []; 
-  console.log('=========');
-  console.log('=========');
-  console.log('=========');
-  console.log('=========');
-  console.log('state in mapStateToProps', state );
   return {
     score: getScore({ questions, auth }),
     auth,
     profile: state.firebase.profile,
     questions: state.firebase.data.questions,
     exampleScore: getExampleScore({ questions }),
+    exampleQuestions: questions
   };
 }
 

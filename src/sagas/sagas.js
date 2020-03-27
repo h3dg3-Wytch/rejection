@@ -15,8 +15,6 @@ export const getQuestions = state => {
 export function* persistState({ type }) {
   if (!type.includes('LOAD') && !type.includes('INIT') && !type.includes('FIREBASE') && !type.includes('Firebase') ) {
     const questions = yield select(getQuestions);
-    console.log('inside persist state', questions);
-    debugger;
     yield call(saveState,  questions );
   }
 }
@@ -35,13 +33,6 @@ export function* loadLocalState() {
   if (localStorageState === undefined) {
     localStorageState = initialState;
   };
-  // if(localStorageState.questions.questions){
-  //   const questions = localStorageState.questions.questions;
-  //   yield put({ type: 'INIT_LOAD', payload: questions });
-  // } else {
-  //   yield put({ type: 'INIT_LOAD', payload: localStorageState });
-  // }
-  debugger;
   yield put({ type: 'INIT_LOAD', payload: localStorageState});
 
 };

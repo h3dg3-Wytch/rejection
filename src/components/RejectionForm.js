@@ -10,8 +10,9 @@ import { compose } from 'redux'
 import { connect } from 'react-redux';
 
 import Link from 'next/link';
+import RejectionHistoryList from './RejectionHistoryList';
 
-const RejectionForm = ({ score, createQuestion, auth, profile, questions, exampleScore }) => {
+const RejectionForm = ({ score, createQuestion, auth, profile, questions, exampleScore, exampleQuestions }) => {
 
   const [currentAskee, setCurrentAskee] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState('');
@@ -66,6 +67,7 @@ const RejectionForm = ({ score, createQuestion, auth, profile, questions, exampl
             <button>Submit</button>
           </div>
         </form>
+        <RejectionHistoryList questions={questions} />
         <Link href="/sign-in">
           <button>Sign in</button>
         </Link>
@@ -120,6 +122,7 @@ const RejectionForm = ({ score, createQuestion, auth, profile, questions, exampl
           <button>Submit</button>
         </div>
       </form>
+      <RejectionHistoryList questions={exampleQuestions} />
       <Link href="/sign-in">
         <button>Sign in</button>
       </Link>
@@ -128,7 +131,6 @@ const RejectionForm = ({ score, createQuestion, auth, profile, questions, exampl
       </Link>
     </div>
   ); 
-
   }
 };
 
