@@ -94,6 +94,7 @@ const initStore = (preloadedState = initialState) => {
 
   sagaMiddleware.run(rootSaga);
   store.dispatch({ type: 'LOAD_INTIAL_STORE' });
+  store.dispatch({ type: 'SAVE_TO_FIREBASE' });
   return store;
 };
 
