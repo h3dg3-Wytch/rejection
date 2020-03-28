@@ -8,6 +8,10 @@ const RejectionHistoryList = ({ questions = [], auth }) => {
         questions = questions.questions;
     }
 
+    if(questions && Object.keys(questions)) {
+        questions = Object.keys(questions).map( key => questions[key] );
+    }
+
     const rejectionListItems = (questions) ? getQuestionLensItems(questions) : [];
     return <div className='rejectionList'>{rejectionListItems}</div>
 };

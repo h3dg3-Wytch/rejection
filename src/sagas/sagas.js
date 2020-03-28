@@ -7,15 +7,17 @@ import { initialState } from '../reducer/RejectionReducer';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-export const getQuestions = state => {
-  console.log(state); 
-  return state.questions;
-};
+export const getQuestions = state => state.questions;
 
 export function* persistState({ type }) {
   if (!type.includes('LOAD') && !type.includes('INIT') && !type.includes('FIREBASE') && !type.includes('Firebase') ) {
-    const questions = yield select(getQuestions);
+    let questions = yield select(getQuestions);
     yield call(saveState,  questions );
+    debugger;
+    questions = questions.questions.filter(question => question.owner !== '');
+    if(questions && questions != []) {
+      yield firebase.ref('questions').push({ questions });
+    }
   }
 }
 

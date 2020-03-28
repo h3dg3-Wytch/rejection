@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import SignInForm from '../../components/SignInForm';
-import RejectionHistoryList from '../../components/RejectionHistoryList';
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
@@ -31,7 +30,6 @@ function App({ score, createQuestion, auth, profile, questions, exampleScore, ex
           exampleScore={exampleScore}
           exampleQuestions={exampleQuestions}
         />
-        <RejectionHistoryList questions={questions}/>
       </AuthIsLoaded>
     </div>
   );

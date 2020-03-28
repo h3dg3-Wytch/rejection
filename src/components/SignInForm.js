@@ -13,9 +13,6 @@ import { firestore } from 'firebase';
 
 import Router , {useRouter}  from 'next/router';
 
-
-const authExists = auth => !!auth && !!auth.uid;
-
 const SignInForm = ({ auth, profile }) => {
   const [currentEmail, setCurrentEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -79,6 +76,9 @@ const SignInForm = ({ auth, profile }) => {
     </div>
   );
 };
+
+const authExists = auth => !!auth && !!auth.uid;
+
 
 export default connect(state => ({
   auth: state.firebase.auth,
