@@ -16,7 +16,7 @@ export function* persistState({ type }) {
     debugger;
     questions = questions.questions.filter(question => question.owner !== '');
     if(questions && questions != []) {
-      yield firebase.ref('questions').push({ questions });
+      yield firebase.ref('questions').update({ questions });
     }
   }
 }

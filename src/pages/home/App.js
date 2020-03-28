@@ -39,15 +39,27 @@ const authExists = auth => !!auth && !!auth.uid;
 
 function mapStateToProps(state) {
   const auth = state.firebase.auth;
-  const questions = state.questions.questions || []; 
+  const questions = state.questions.questions || [];
+  const firebaseQuestions = state.firebase.data.questions || [];
+  const userQueries = getUserQueries(firebaseQuestions) || [];
+  const userQuestions = [].concat.apply([],userQueries);
+  const score = getScore({userQuestions, auth});
   return {
-    score: getScore({ questions, auth }),
+    score,
     auth,
     profile: state.firebase.profile,
-    questions: state.firebase.data.questions,
+    questions: firebaseQuestions,
     exampleScore: getExampleScore({ questions }),
     exampleQuestions: questions
   };
+}
+
+const getUserQueries = questions => {
+  if(questions) {
+    return Object.keys(questions).map( key => questions[key] );
+  } else {
+    return [];
+  }
 }
 
 const mapDispatchToProps = {

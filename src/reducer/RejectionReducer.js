@@ -65,9 +65,13 @@ const rootReducer = combineReducers({
   questions: reducer
 });
 
-const getScore = state =>
-  state.questions
-    .filter(question => state.auth.uid === question.owner)
+const getScore = state => {
+  return state.userQuestions
+    .filter(question =>{ 
+      console.log(state.auth.uid);
+      console.log(question.owner);
+      return state.auth.uid === question.owner
+    })
     .reduce(
       (acc, question) =>
         question.status === 'rejected'
@@ -77,6 +81,7 @@ const getScore = state =>
           : acc,
       0
     );
+}
 
 const getExampleScore = state => 
   state.questions.reduce(
