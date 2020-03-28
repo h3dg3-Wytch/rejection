@@ -84,7 +84,9 @@ const getScore = state => {
 }
 
 const getExampleScore = state => 
-  state.questions.reduce(
+  state.questions
+  .filter(question => question.owner === '')
+  .reduce(
     (acc, question) =>
       question.status === 'rejected'
         ? acc + 10
@@ -92,6 +94,10 @@ const getExampleScore = state =>
         ? acc + 1
         : acc,
     0);
+
+
+const getExampleQuestions = state => 
+    state.questions.filter(question => question.owner === '');
 
 const getCurrentQuestion = state => ({
   question: state.currentQuestion,
@@ -113,4 +119,4 @@ const initStore = (preloadedState = initialState) => {
 };
 
 export default initStore;
-export { initialState, reducer, getScore, getCurrentQuestion, initStore, getExampleScore };
+export { initialState, reducer, getScore, getCurrentQuestion, initStore, getExampleScore, getExampleQuestions };

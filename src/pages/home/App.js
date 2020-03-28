@@ -4,7 +4,7 @@ import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 import RejectionForm from '../../components/RejectionForm';
 
-import { getScore, getExampleScore } from '../../reducer/RejectionReducer';
+import { getScore, getExampleScore, getExampleQuestions } from '../../reducer/RejectionReducer';
 import { createQuestion } from '../../actions';
 
 import { connect } from 'react-redux';
@@ -50,7 +50,7 @@ function mapStateToProps(state) {
     profile: state.firebase.profile,
     questions: firebaseQuestions,
     exampleScore: getExampleScore({ questions }),
-    exampleQuestions: questions
+    exampleQuestions: getExampleQuestions({ questions })
   };
 }
 
