@@ -23,9 +23,6 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-// store.dispatch({ type: 'LOAD_INTIAL_STORE' });
-store.dispatch({ type: 'SAVE_TO_FIREBASE' });
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

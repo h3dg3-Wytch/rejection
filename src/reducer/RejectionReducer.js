@@ -22,7 +22,7 @@ import 'firebase/auth';
 // pust the contents of the .env file into the firebaseConfig 
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDJ-VJv3AW1wvFk6CeM5p-Oelh5HO0m0lg',
+  apiKey: process.env.API_KEY,
   authDomain: 'rejection-be1c8.firebaseapp.com',
   databaseURL: 'https://rejection-be1c8.firebaseio.com',
   projectId: 'rejection-be1c8',
