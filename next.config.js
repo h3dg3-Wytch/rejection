@@ -12,5 +12,6 @@ module.exports = withSass({
     APP_ID: process.env.APP_ID,
     MEASUREMENT_ID: process.env.MEASUREMENT_ID,
   },
-  includePaths: ['styles', 'node_modules']
+  includePaths: ['styles', 'node_modules'],
+  target: 'serverless'
 });

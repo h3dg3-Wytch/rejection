@@ -24,8 +24,6 @@
     "eslint-config-react-app": "^5.0.1",
     "eslint-loader": "2.2.1",
     "eslint-plugin-flowtype": "3.13.0",
-    "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-watch": "^6.0.1",
     "express": "^4.17.1",
     "file-loader": "3.0.1",
@@ -43,7 +41,7 @@
     "mini-css-extract-plugin": "0.5.0",
     "mongodb": "^3.3.3",
     "mongoose": "^5.7.7",
-    "next": "^9.1.6",
+    "next": "^9.3.2",
     "next-redux-saga": "^4.1.2",
     "next-redux-wrapper": "^4.0.1",
     "node-sass": "^4.13.0",
@@ -55,7 +53,7 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
-    "react": "^16.9.0",
+    "react": "^16.13.1",
     "react-app-polyfill": "^1.0.2",
     "react-dev-utils": "^9.0.3",
     "react-dom": "^16.9.0",
@@ -85,7 +83,8 @@
     "test:watch": "npm run -s test -- --watch",
     "lint": "eslint --fix src/ && echo 'Lint complete.'",
     "watch": "watch 'clear && npm run -s test && npm run -s lint' src",
-    "dev": "nodemon src/server.js"
+    "dev": "next",
+    "now-build": "next build"
   },
   "eslintConfig": {
     "extends": "react-app"
